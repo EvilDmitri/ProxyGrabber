@@ -16,10 +16,9 @@ from grab import Grab
 
 
 def spiderman(file_site_list):
-    line_number = 1  # ))) Только для вывода в консоль
+    line_number = 1  # For console output
     
     for site in file_site_list:
-        # Разобрать строку на socks_type и site_address
         temp = site.split()
         socks_type = temp[0]
         site_address = temp[1]
@@ -38,13 +37,13 @@ def spiderman(file_site_list):
     
 
 def find_():
-                # Этот кусок ставит на все <br> теги текст '\n'
+                # Add to all <br> - '\n'
     raw_br_list = g.xpath_list('//br')  
     for item in raw_br_list:
         item.text = "\n"
         
-        # Получаем ВЕСЬ текст со страницы
-    raw_text = g.xpath_text('//*')          # И неуклюже выбираем...  TODO Сделать правильно!!
+        # Receive all text from page
+    raw_text = g.xpath_text('//*')
     return(re.findall('[0-9]+[.][0-9]+[.][0-9]+[.][0-9]+[:][0-9]+', raw_text))
 
     
@@ -64,8 +63,8 @@ def store_(ip_port_list, socks_type):
 
 def proxy_checker():
     '''
-    Проверка адресов на рабочесть)))
-    Используется YAPH через proxychains
+    Check is working
+    Using YAPH via proxychains
     '''
     proc = subprocess.Popen("cat ip-port.txt | sort | uniq | proxychains yaph --use_hunter_stdin", shell=True, stdout=subprocess.PIPE)
     
@@ -86,6 +85,7 @@ if __name__ == '__main__':
 
     file_site_list = open('site_list.txt', 'r')
     spiderman(file_site_list)
+
 
 
 

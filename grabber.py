@@ -1,14 +1,7 @@
 # /usr/bin/env/python
 # -*-coding=utf-8-*-
 
-import os, subprocess
-import re
-# ???
-ip_re = re.compile('((\d{1,2}|1\d{2}|2[0-4][0-9]|25[0-5])\.(\d{1,2}|1\d{2}|2[0-4][0-9]|25[0-5])\.(\d{1,2}|1\d{2}|2[0-4][0-9]|25[0-5])\.(\d{1,2}|1\d{2}|2[0-4][0-9]|25[0-5]))')
-
-
-#pattern = "((?P<login>\w+):(?P<password>\w+)@)?(?P<ip>\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3})(:(?P<port>\d+))?"
-
+import os, re
 
 from grab import Grab
 
@@ -41,12 +34,16 @@ def find_():
     raw_br_list = g.xpath_list('//br')  
     for item in raw_br_list:
         item.text = "\n"
-        
+
         # Receive all text from page
     raw_text = g.xpath_text('//*')
     return(re.findall('[0-9]+[.][0-9]+[.][0-9]+[.][0-9]+[:][0-9]+', raw_text))
 
-    
+
+def find_proxies():
+    pass
+
+
     
     
 def store_(ip_port_list, socks_type):
@@ -61,23 +58,6 @@ def store_(ip_port_list, socks_type):
             
     file_to_write.close()
 
-def proxy_checker():
-    '''
-    Check is working
-    Using YAPH via proxychains
-    '''
-    proc = subprocess.Popen("cat ip-port.txt | sort | uniq | proxychains yaph --use_hunter_stdin", shell=True, stdout=subprocess.PIPE)
-    
-    is_data = True
-    while is_data: 
-        data = proc.stdout.readline()
-        if data:
-            print data
-        else: is_data = False
-    
-    print "It's over"
-
-    os.remove("ip-port.txt")
 
 
 if __name__ == '__main__':

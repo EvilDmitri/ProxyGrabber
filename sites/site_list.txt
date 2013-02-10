@@ -1,0 +1,2 @@
+http http://www.my-proxy.com/free-proxy-list.html
+http http://www.my-proxy.com/free-proxy-list-2.html

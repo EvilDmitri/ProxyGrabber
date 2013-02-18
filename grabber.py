@@ -63,8 +63,8 @@ def store_(ip_port_list, socks_type):
 if __name__ == '__main__':
     g = Grab()
 
-    file_site_list = open('site_list.txt', 'r')
-    spiderman(file_site_list)
+    with open('site_list.txt', 'r') as sile_site_list:
+        spiderman(file_site_list)
 
 
 

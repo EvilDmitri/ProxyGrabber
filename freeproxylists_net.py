@@ -26,7 +26,7 @@ class ProxySpider(Spider):
 
 
     def task_cookie(self, grab, task):
-        for x in range(1, 2):
+        for x in range(1, 49):
             page = PAGE + str(x)
             grab.setup(url=page)
             yield Task('initial', grab=grab)
